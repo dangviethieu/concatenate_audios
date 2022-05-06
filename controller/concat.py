@@ -68,10 +68,16 @@ class ConcatTask(Process):
                 for files_ in files_splited:
                     _, tail = os.path.split(files_[0])
                     try:
-                        with open(f"configs/{tail}.txt", "w") as f:
-                            for file in files_:
+                        with open(f"configs/{tail}.txt", "w", encoding='utf-8') as f:
+                            for index_file, file in enumerate(files_):
+                                if config.music_file and index_file == config.position_insert_music:
+                                    if config.music_file.split('.')[-1] == file.split('.')[-1]:
+                                        f.write(f"file '{config.music_file}'\n")
+                                    else:
+                                        custom_log(f'#Thread {index+1}: ---> need music file format same with input files format!')
                                 f.write(f"file '{file}'\n")
                         os.system(f"ffmpeg -y -f concat -safe 0 -i configs/{tail}.txt -c copy {config.output_folder}/{tail}")
+                        # os.system(f"ffmpeg.exe -y -i inputs/1.mp3 -i music.mp3 -filter_complex "[0:a][1:a] concat=n=2:v=0:a=1 [a]" -map "[a]" out.mp3")
                         os.remove(f"configs/{tail}.txt")
                         custom_log(f'#Thread {index+1}: concates {tail} successfully!')
                     except Exception as e:

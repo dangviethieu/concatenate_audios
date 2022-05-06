@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from .base import Base, sg
 from controller.config import Config, ConfigSetup
 from controller.concat import ConcatHandler
@@ -30,7 +32,7 @@ class Concat(Base):
                 sg.Frame('Setting', [[
                     sg.Text('No files'), sg.In(self.config_setup.config.files_number, key='files_number', size=(3,1)), 
                     sg.Text('Threads'), sg.In(self.config_setup.config.threads, key='threads', size=(3,1)),
-                    sg.Text('Music insert:'),  sg.In(self.config_setup.config.music_file, size=(30,1), enable_events=True ,key='music_file'),  sg.FolderBrowse(), 
+                    sg.Text('Music insert:'),  sg.In(self.config_setup.config.music_file, size=(30,1), enable_events=True ,key='music_file'),  sg.FileBrowse(), 
                     sg.Text('Position insert'), sg.In(self.config_setup.config.position_insert_music, key='position_insert_music', size=(3,1)),
                 ]])
             ],
