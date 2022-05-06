@@ -3,7 +3,7 @@
 from .base import Base, sg
 from controller.config import Config, ConfigSetup
 from controller.concat import ConcatHandler
-from helper.constant import VERSION
+from helper.constant import VERSION, ConcatOptions
 
 
 class Concat(Base):
@@ -12,7 +12,7 @@ class Concat(Base):
         self.config_setup = ConfigSetup()
         self.concat_handler = ConcatHandler()
         self.layout = self.create_layout()
-        self.window = sg.Window(f'Concat v{VERSION}', self.layout)
+        self.window = sg.Window(f'Concat v{VERSION}', self.layout, icon='icon.ico')
         self.handle_events()
 
     def create_layout(self):
@@ -37,6 +37,8 @@ class Concat(Base):
                 ]])
             ],
             [
+                sg.Text('Concat options:'),
+                sg.Combo([ConcatOptions.CONCAT_DEMUXER.value, ConcatOptions.CONCAT_FILTER.value], default_value=self.config_setup.config.concat_option, key='concat_options', enable_events=True), 
                 sg.Button('Start', size=(20,1), button_color='green', key='start'),
                 sg.Button('Stop', size=(20,1), button_color='red', key='stop', visible=False),
             ],
@@ -67,6 +69,7 @@ class Concat(Base):
                         threads=int(self.window['threads'].get()),
                         music_file=self.window['music_file'].get(),
                         position_insert_music=int(self.window['position_insert_music'].get()),
+                        concat_option=self.window['concat_options'].get()
                     )
                 )
                 # run concat

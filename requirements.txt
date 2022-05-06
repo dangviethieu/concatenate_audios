@@ -1,2 +1,4 @@
 PySimpleGUI
 pydantic
+ffmpeg-python
+requests

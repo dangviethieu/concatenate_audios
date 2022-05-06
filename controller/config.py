@@ -1,7 +1,7 @@
 import json
 import os
 from pydantic import BaseModel
-from helper.constant import CONFIG_FILE
+from helper.constant import CONFIG_FILE, ConcatOptions
 
 
 class Config(BaseModel):
@@ -11,6 +11,7 @@ class Config(BaseModel):
     threads: int
     music_file: str
     position_insert_music: int
+    concat_option: str
 
 class ConfigSetup:
     def __init__(self) -> None:
@@ -36,4 +37,5 @@ class ConfigSetup:
                 threads=4,
                 music_file='',
                 position_insert_music=3,
+                concat_option=ConcatOptions.CONCAT_DEMUXER.value
             )
