@@ -1,7 +1,7 @@
 import enum
 
 CONFIG_FILE = 'config.json'
-VERSION = "1.0"
+VERSION = "1.1"
 
 NEED_LOGIN = True
 USERNAME = 'hieudv3'

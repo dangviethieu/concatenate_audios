@@ -29,12 +29,20 @@ class Concat(Base):
                 sg.FolderBrowse(), 
             ],
             [
-                sg.Frame('Setting', [[
-                    sg.Text('No files'), sg.In(self.config_setup.config.files_number, key='files_number', size=(3,1)), 
-                    sg.Text('Threads'), sg.In(self.config_setup.config.threads, key='threads', size=(3,1)),
-                    sg.Text('Music insert:'),  sg.In(self.config_setup.config.music_file, size=(30,1), enable_events=True ,key='music_file'),  sg.FileBrowse(), 
-                    sg.Text('Position insert'), sg.In(self.config_setup.config.position_insert_music, key='position_insert_music', size=(3,1)),
-                ]])
+                sg.Frame('Setting', [
+                    [
+                        sg.Text('No files'), sg.In(self.config_setup.config.files_number, key='files_number', size=(3,1)), 
+                        sg.Text('Threads'), sg.In(self.config_setup.config.threads, key='threads', size=(3,1)),
+                    ],
+                    [
+                        sg.Text('Music insert first:', size=(15,1)),  sg.In(self.config_setup.config.music_file_first, size=(43,1), enable_events=True ,key='music_file_first'),  sg.FileBrowse(), 
+                        sg.Text('Position insert first', size=(17,1)), sg.In(self.config_setup.config.position_insert_music_first, key='position_insert_music_first', size=(3,1)),
+                    ],
+                    [
+                        sg.Text('Music insert second:', size=(15,1)),  sg.In(self.config_setup.config.music_file_second, size=(43,1), enable_events=True ,key='music_file_second'),  sg.FileBrowse(), 
+                        sg.Text('Position insert second', size=(17,1)), sg.In(self.config_setup.config.position_insert_music_second, key='position_insert_music_second', size=(3,1)),
+                    ],
+                ])
             ],
             [
                 sg.Text('Concat options:'),
@@ -67,8 +75,10 @@ class Concat(Base):
                         output_folder=self.window['output_folder'].get(),
                         files_number=int(self.window['files_number'].get()),
                         threads=int(self.window['threads'].get()),
-                        music_file=self.window['music_file'].get(),
-                        position_insert_music=int(self.window['position_insert_music'].get()),
+                        music_file_first=self.window['music_file_first'].get(),
+                        position_insert_music_first=int(self.window['position_insert_music_first'].get()),
+                        music_file_second=self.window['music_file_second'].get(),
+                        position_insert_music_second=int(self.window['position_insert_music_second'].get()),
                         concat_option=self.window['concat_options'].get()
                     )
                 )

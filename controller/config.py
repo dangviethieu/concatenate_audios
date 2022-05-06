@@ -9,8 +9,10 @@ class Config(BaseModel):
     output_folder: str
     files_number: int
     threads: int
-    music_file: str
-    position_insert_music: int
+    music_file_first: str
+    position_insert_music_first: int
+    music_file_second: str
+    position_insert_music_second: int
     concat_option: str
 
 class ConfigSetup:
@@ -35,7 +37,9 @@ class ConfigSetup:
                 output_folder='',
                 files_number=5,
                 threads=4,
-                music_file='',
-                position_insert_music=3,
+                music_file_first='',
+                position_insert_music_first=0,
+                music_file_second='',
+                position_insert_music_second=3,
                 concat_option=ConcatOptions.CONCAT_DEMUXER.value
             )
