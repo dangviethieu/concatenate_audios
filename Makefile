@@ -7,7 +7,7 @@ run:
 	python main.py
 
 gen_spec:
-	pyi-makespec --onefile --noconsole --name fbcomment --icon icon.ico --hiddenimport "engineio.async_drivers.threading" --hiddenimport "sqlalchemy.ext.baked" main.py
+	pyi-makespec --onefile --noconsole --name cocact --icon icon.ico --hiddenimport "engineio.async_drivers.threading" --hiddenimport "sqlalchemy.ext.baked" main.py
 
 gen_win64:
 	docker run -it --rm -v "${SRC_FOLDER}:/src/" --entrypoint /bin/sh cdrx/pyinstaller-windows -c \
@@ -19,4 +19,4 @@ gen_win64:
  /entrypoint.sh"
 
 zip:
-	cd dist/windows && zip -r fbcomment.zip fbcomment.exe icon.ico chromedriver.exe
+	cd dist/windows && zip -r cocact.zip cocact.exe icon.ico chromedriver.exe
