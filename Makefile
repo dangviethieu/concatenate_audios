@@ -19,4 +19,4 @@ gen_win64:
  /entrypoint.sh"
 
 zip:
-	cd dist/windows && zip -r cocact.zip cocact.exe icon.ico chromedriver.exe
+	cd dist/windows && zip -r cocact.zip cocact.exe icon.ico ffmpeg.exe
