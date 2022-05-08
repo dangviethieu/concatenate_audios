@@ -1,11 +1,11 @@
 import enum
 
 CONFIG_FILE = 'config.json'
-VERSION = "1.1"
+VERSION = "1.3"
 
-NEED_LOGIN = True
-USERNAME = 'hieudv3'
-PASSWORD = '123'
+NEED_LOGIN = False
+USERNAME = ''
+PASSWORD = ''
 
 class ConcatOptions(enum.Enum):
     CONCAT_DEMUXER = "concat demuxer (same codecs)"

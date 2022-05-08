@@ -102,18 +102,21 @@ class ConcatTask(Process):
                         # option 2: concat filter
                         else:
                             custom_log(f'#Thread {index+1}: concating {config.files_number} files {tail}->{tail_end} ...')
+                            no_files = len(files_)
                             cmd = "ffmpeg -y "
                             for index_file, file in enumerate(files_):
                                 if config.music_file_first and index_file == config.position_insert_music_first:
                                     cmd += "-i \"" + config.music_file_first + "\" "
+                                    no_files += 1
                                 if config.music_file_second and index_file == config.position_insert_music_second:
                                     cmd += "-i \"" + config.music_file_second + "\" "
+                                    no_files += 1
                                 cmd += "-i \"" + file + "\" "
                             cmd += "-filter_complex \""
                             for index_file in range(len(files_)):
                                 cmd += "[" + str(index_file) + ":a]"
-                            cmd += f" concat=n={len(files_)}:v=0:a=1 [a]\" -map [a] \"{config.output_folder}/{tail}\""
-                            process = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True) 
+                            cmd += f" concat=n={no_files}:v=0:a=1 [a]\" -map [a] \"{config.output_folder}/{tail}\""
+                            process = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, encoding='utf-8') 
                             for _ in process.stdout:
                                 pass
                             custom_log(f'#Thread {index+1}: concates {tail} successfully!')
